@@ -90,7 +90,8 @@ button { font-family: inherit; cursor: pointer; }
   position: relative;
   overflow: hidden;
   background: var(--white);
-  min-height: clamp(560px, 66vw, 880px);
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
@@ -137,6 +138,12 @@ button { font-family: inherit; cursor: pointer; }
   padding: clamp(56px, 9vw, 130px) var(--container-pad) clamp(40px, 6vw, 90px);
 }
 
+.hero-main {
+  display: flex;
+  flex-direction: column;
+  margin: auto 0;
+}
+
 .hero-label {
   color: var(--white);
   font-size: clamp(16px, 1.5vw, 24px);
@@ -163,7 +170,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .hero-tagline {
-  margin: auto auto 0;
+  margin: 0 auto;
   text-align: center;
   max-width: 34em;
   color: var(--ink);
@@ -525,7 +532,6 @@ button { font-family: inherit; cursor: pointer; }
 
 /* Tablet */
 @media (max-width: 900px) {
-  .hero { min-height: clamp(480px, 92vw, 680px); }
   .hero-subtitle { font-size: clamp(18px, 4vw, 28px); }
 
   .intro-name span { padding: 0.06em 0.22em; }
@@ -559,7 +565,6 @@ button { font-family: inherit; cursor: pointer; }
   .nav { padding-top: 24px; }
   .nav-link { font-size: 15px; }
 
-  .hero { min-height: 100vw; }
   .hero-inner { padding-top: 44px; }
   .hero-label { font-size: 15px; }
   .hero-title { font-size: 19vw; }
