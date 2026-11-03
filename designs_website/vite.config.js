@@ -3,7 +3,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  server: { host: true },
+  // Allow GitHub Codespaces forwarded URLs (*.app.github.dev)
+  server: { host: true, allowedHosts: ['.app.github.dev'] },
+  preview: { host: true, allowedHosts: ['.app.github.dev'] },
   build: {
     rollupOptions: {
       output: {
