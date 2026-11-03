@@ -23,8 +23,7 @@ Images go in `public/images/`. Run `npm run images` to generate `public/images/w
 | `components/Hero` | Procedural mountain layers with the name placed *between* them (foreground masking parallax), mouse depth and a scroll-out |
 | `components/About` | Words light up as you scroll (parallax text reveal), inline photo pills, a clip-path portrait reveal and an approach "route" |
 | `components/FieldNotes` | Giant type sliding behind floating photos |
-| `components/Work` | Pinned horizontal gallery on desktop (vertical stack on mobile) plus a WebGL hover distortion (`lib/distortion.js`) |
-| `components/CaseStudy` | Fullscreen project view that grows out of the clicked image |
+| `components/Work` | Pinned horizontal gallery on desktop (vertical stack on mobile) plus a WebGL hover distortion (`lib/distortion.js`); clicking an image or "Visit site" opens the live project |
 | `components/Skills` | Sticky stacking panels, variable-width type and "elevation profile" skill indicators |
 | `components/Route` | Timeline with a sticky year readout |
 | `components/Contact` | Rising sun, characters that stretch near the cursor, a magnetic CTA |

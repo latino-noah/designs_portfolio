@@ -199,11 +199,6 @@
   padding: 4px;
   margin: -4px;
 }
-.project__live {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
 
 /* ---------- Outro + progress ---------- */
 .work__outro {

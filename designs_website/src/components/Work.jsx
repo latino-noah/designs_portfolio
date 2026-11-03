@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { gsap, useGSAP, DESKTOP, MOTION, isFinePointer, prefersReducedMotion } from '../lib/motion';
 import { projects, person } from '../data/content';
-import { Arrow, RollText } from './ui';
+import { Arrow } from './ui';
 import './Work.css';
 
 const pad = (n) => String(n).padStart(2, '0');
 
-export default function Work({ onOpen }) {
+export default function Work() {
   const root = useRef(null);
   const counter = useRef(null);
   const bar = useRef(null);
@@ -175,15 +175,16 @@ export default function Work({ onOpen }) {
                 <span className="project__reveal">{p.year}</span>
               </div>
 
-              <button
-                type="button"
+              <a
                 className="project__media"
-                data-cursor="View"
-                onClick={(e) => onOpen(i, e.currentTarget)}
-                aria-label={`Open case study: ${p.title}`}
+                href={p.link}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="Visit"
+                aria-label={`Visit ${p.title} (opens in a new tab)`}
               >
                 <img className="project__img" src={p.image} alt={p.alt} loading="lazy" width="1400" height="875" />
-              </button>
+              </a>
 
               <div className="project__body">
                 <h3 id={`p-${p.id}`} className="project__title display">
@@ -204,13 +205,8 @@ export default function Work({ onOpen }) {
                 </dl>
                 <div className="project__actions project__reveal-wrap">
                   <span className="project__reveal">
-                    <button type="button" className="pill" onClick={(e) => onOpen(i, e.currentTarget.closest('.project').querySelector('.project__media'))}>
-                      Case study <Arrow dir="e" />
-                    </button>
-                  </span>
-                  <span className="project__reveal">
-                    <a className="project__live mono" href={p.link} target="_blank" rel="noreferrer">
-                      <RollText>Live site</RollText> <Arrow />
+                    <a className="pill" href={p.link} target="_blank" rel="noreferrer">
+                      Visit site <Arrow />
                     </a>
                   </span>
                 </div>

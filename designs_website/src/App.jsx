@@ -10,11 +10,9 @@ import Work from './components/Work';
 import Skills from './components/Skills';
 import Route from './components/Route';
 import Contact from './components/Contact';
-import CaseStudy from './components/CaseStudy';
 
 export default function App() {
   const [ready, setReady] = useState(false);
-  const [caseState, setCaseState] = useState(null);
 
   useEffect(() => initLenis(), []);
 
@@ -29,8 +27,6 @@ export default function App() {
   }, []);
 
   const onLoaded = useCallback(() => setReady(true), []);
-  const openCase = useCallback((index, from) => setCaseState({ index, from }), []);
-  const closeCase = useCallback(() => setCaseState(null), []);
 
   return (
     <>
@@ -44,12 +40,11 @@ export default function App() {
         <Hero ready={ready} />
         <About />
         <FieldNotes />
-        <Work onOpen={openCase} />
+        <Work />
         <Skills />
         <Route />
       </main>
       <Contact />
-      <CaseStudy state={caseState} onClose={closeCase} />
       <div className="grain" aria-hidden="true" />
     </>
   );
