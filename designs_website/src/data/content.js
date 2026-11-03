@@ -16,7 +16,7 @@ export const person = {
   country: 'NL',
   timezone: 'Europe/Amsterdam',
   coords: '51.9225° N — 4.4792° E',
-  email: 'hello@example.com', // TODO: your public contact email
+  email: 'noahda.c@outlook.com',
   socials: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/your-handle' }, // TODO
     { label: 'GitHub', href: 'https://github.com/latino-noah' },
@@ -77,7 +77,7 @@ export const fieldNotes = {
 export const projects = [
   {
     id: 'summit',
-    title: 'Summit',
+    title: 'Hiking Recommendation',
     kind: 'Travel platform — concept',
     year: '2026',
     image: '/images/web/work-6.webp',
@@ -90,7 +90,7 @@ export const projects = [
       'Make a travel site feel like standing at the trailhead — without heavy video or a slow first load.',
     solution:
       'A layered, cut-out photograph with foreground masking parallax, a restrained UI and a single call to action.',
-    link: '#', // TODO
+    link: 'https://hiking-tau.vercel.app/',
   },
   {
     id: 'nts-goons',
@@ -105,7 +105,7 @@ export const projects = [
     tech: ['Three.js', 'Blender', 'JavaScript', 'CSS'],
     challenge: 'Let people inspect a product in 3D without turning the page into a heavy tech demo.',
     solution: 'An optimised Blender model in Three.js, lazy-loaded behind a light poster image, with soft pastel art direction.',
-    link: '#', // TODO
+    link: 'https://3d-sneaker-website.vercel.app/',
   },
   {
     id: 'urban-digital',
@@ -120,7 +120,7 @@ export const projects = [
     tech: ['React', 'Tailwind CSS', 'JavaScript'],
     challenge: 'Communicate three services and pricing to local businesses in a single scroll.',
     solution: 'A reusable component system in React + Tailwind and a strong, focused hero with two clear paths.',
-    link: '#', // TODO
+    link: 'https://webservices-henna.vercel.app/',
   },
   {
     id: 'gianni-watson',
@@ -135,11 +135,11 @@ export const projects = [
     tech: ['HTML', 'CSS', 'GSAP'],
     challenge: 'Create calm in a genre that is usually loud.',
     solution: 'Radical reduction: one typeface, generous space and slow, deliberate motion.',
-    link: '#', // TODO
+    link: 'https://website-gianni.vercel.app/',
   },
   {
     id: 'parallax-lab',
-    title: 'Parallax Lab',
+    title: 'Parallax Website',
     kind: 'Motion study',
     year: '2024',
     image: '/images/web/work-3.webp',
@@ -150,11 +150,11 @@ export const projects = [
     tech: ['GSAP', 'ScrollTrigger', 'JavaScript'],
     challenge: 'Understand why some scroll effects feel cinematic and others feel cheap.',
     solution: 'Dozens of small studies tuning easing, distance and speed until it clicked.',
-    link: '#', // TODO
+    link: 'https://parralax-eta.vercel.app/',
   },
   {
     id: 'portfolio-v1',
-    title: 'Giving it 100%',
+    title: 'Old Portfolio',
     kind: 'Portfolio v1',
     year: '2024',
     image: '/images/web/work-1.webp',
@@ -165,7 +165,7 @@ export const projects = [
     tech: ['HTML', 'CSS', 'Bootstrap', 'JavaScript'],
     challenge: 'Show who I am before I had a body of client work.',
     solution: 'Lead with personality: my own photography and a headline that doubles as a motto.',
-    link: '#', // TODO
+    link: 'https://noahjulian.nl/',
   },
 ];
 
@@ -232,7 +232,7 @@ export const route = [
     year: '2024',
     type: 'Project',
     title: 'Discovering motion',
-    place: 'Parallax Lab',
+    place: 'Parallax Website',
     text: 'Fell into GSAP and ScrollTrigger. Built dozens of small scroll studies and my first portfolio.',
     alt: '+0910 m',
   },
