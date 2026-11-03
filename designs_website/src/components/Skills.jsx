@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { gsap, useGSAP, MOTION } from '../lib/motion';
+import { useEffect, useRef } from 'react';
+import { gsap, useGSAP, ScrollTrigger, MOTION } from '../lib/motion';
 import { skills } from '../data/content';
 import './Skills.css';
 
@@ -31,6 +31,40 @@ function Profile({ level, seed }) {
 
 export default function Skills() {
   const root = useRef(null);
+
+  /*
+   * Sticky panels taller than the remaining screen height would hide their last rows.
+   * For those, lower the sticky offset so the panel first scrolls until its bottom is
+   * visible, then sticks — the stacking effect stays, nothing gets hidden.
+   */
+  useEffect(() => {
+    const panels = [...root.current.querySelectorAll('.skill-panel')];
+    let frame = 0;
+    const fit = () => {
+      panels.forEach((p) => {
+        p.style.top = '';
+        const cs = getComputedStyle(p);
+        if (cs.position !== 'sticky') return;
+        const top = parseFloat(cs.top);
+        const room = window.innerHeight - 12;
+        if (top + p.offsetHeight > room) p.style.top = `${Math.round(room - p.offsetHeight)}px`;
+      });
+    };
+    const onResize = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        fit();
+        ScrollTrigger.refresh();
+      });
+    };
+    fit();
+    document.fonts?.ready.then(onResize);
+    window.addEventListener('resize', onResize);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
 
   useGSAP(
     () => {

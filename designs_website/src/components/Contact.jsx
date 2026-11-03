@@ -20,18 +20,18 @@ export default function Contact() {
         gsap.fromTo(
           '.contact__sun',
           { yPercent: 70, scale: 0.7 },
-          { yPercent: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'top 10%', scrub: true } }
+          { yPercent: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'clamp(top 10%)', scrub: true } }
         );
         gsap.fromTo(
           '.contact__ridge',
           { yPercent: 60 },
-          { yPercent: 0, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'top 20%', scrub: true } }
+          { yPercent: 0, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'clamp(top 20%)', scrub: true } }
         );
         gsap.utils.toArray('.contact__line').forEach((line, i) => {
           gsap.fromTo(
             line,
             { xPercent: i % 2 ? 18 : -18 },
-            { xPercent: 0, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top 90%', end: 'top 15%', scrub: true } }
+            { xPercent: 0, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top 90%', end: 'clamp(top 30%)', scrub: true } }
           );
         });
 

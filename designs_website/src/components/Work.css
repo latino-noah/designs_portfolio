@@ -154,7 +154,8 @@
 }
 
 .project__title {
-  font-size: clamp(56px, 6.6vw, 128px);
+  /* --len = longest word; shrink so it always fits the title area */
+  font-size: min(clamp(56px, 6.6vw, 128px), calc(32vw / (var(--len, 8) * 0.74)));
   margin-left: -9vw;
   overflow: hidden;
   padding-bottom: 0.05em;
@@ -269,7 +270,8 @@
   }
   .project {
     width: auto;
-    grid-template-columns: 1fr;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
     padding: 0;
   }
   .project__media {
@@ -284,7 +286,7 @@
   .project__title {
     margin-left: 0;
     margin-top: -0.55em;
-    font-size: clamp(48px, 13vw, 110px);
+    font-size: min(clamp(40px, 13vw, 110px), calc((100vw - 2 * var(--gutter)) / (var(--len, 8) * 0.74)));
     width: auto;
   }
 }

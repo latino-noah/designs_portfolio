@@ -205,3 +205,19 @@
     display: none;
   }
 }
+
+/* Low screens (landscape phones): drop the decorative ridge so links + contact stay visible */
+@media (max-height: 520px) {
+  .menu {
+    padding-bottom: 16px;
+  }
+  .menu__ridge {
+    display: none;
+  }
+  .menu__link {
+    font-size: min(9vh, 9vw);
+  }
+  .menu__foot {
+    padding-top: 10px;
+  }
+}

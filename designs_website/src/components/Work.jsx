@@ -187,7 +187,11 @@ export default function Work() {
               </a>
 
               <div className="project__body">
-                <h3 id={`p-${p.id}`} className="project__title display">
+                <h3
+                  id={`p-${p.id}`}
+                  className="project__title display"
+                  style={{ '--len': Math.max(...p.title.split(' ').map((w) => w.length)) }}
+                >
                   <span className="project__title-inner">{p.title}</span>
                 </h3>
                 <div className="project__reveal-wrap">
