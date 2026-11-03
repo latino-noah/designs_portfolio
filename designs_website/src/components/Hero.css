@@ -1,0 +1,233 @@
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  background: var(--ink);
+  isolation: isolate;
+}
+
+/* ---------- Sky & sun ---------- */
+.hero__sky {
+  position: absolute;
+  inset: -10% 0 0 0;
+  background:
+    radial-gradient(120% 60% at 60% 62%, rgba(255, 122, 61, 0.55) 0%, rgba(255, 90, 31, 0) 60%),
+    linear-gradient(180deg, #0c0c0b 0%, #1b1411 30%, #3b1e13 52%, #8c3a1a 70%, #e0692f 84%, #ffa66b 100%);
+}
+
+.hero__sun-wrap {
+  position: absolute;
+  left: 58%;
+  top: 26%;
+  width: min(26vw, 40svh);
+  aspect-ratio: 1;
+  translate: -50% 0;
+}
+.hero__sun-depth,
+.hero__sun {
+  width: 100%;
+  height: 100%;
+}
+.hero__sun {
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, #ffe2c4 0%, #ffb27a 30%, #ff7a3d 62%, #ff5a1f 100%);
+  box-shadow:
+    0 0 80px 20px rgba(255, 122, 61, 0.45),
+    0 0 240px 80px rgba(255, 90, 31, 0.25);
+}
+
+/* ---------- Ridge layers ---------- */
+.hero__layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+.hero__layer-inner {
+  position: absolute;
+  inset: 0 -5%;
+}
+.hero__layer svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero__layer-fill {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  right: 0;
+  height: 140vh;
+}
+
+/* ---------- Name ---------- */
+.hero__name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: max(calc(var(--nav-h) + 4svh), 17svh);
+  text-align: center;
+  pointer-events: none;
+  will-change: transform;
+  transform-origin: 50% 0%;
+}
+.hero__name-depth {
+  position: relative;
+  display: inline-block;
+}
+.hero__first {
+  display: flex;
+  justify-content: center;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-variation-settings: 'wdth' 125;
+  font-size: min(23vw, 44svh);
+  line-height: 0.8;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+  color: var(--bone);
+  padding-top: 0.08em;
+}
+.hero__char {
+  display: inline-block;
+  will-change: transform;
+}
+
+.hero__last {
+  position: absolute;
+  right: 0.1em;
+  top: -0.42em;
+  display: block;
+  overflow: hidden;
+  padding: 0.05em 0.1em 0.12em;
+  font-size: min(5.4vw, 9.5svh);
+  line-height: 1;
+  color: var(--bone);
+  white-space: nowrap;
+}
+.hero__last-inner {
+  display: block;
+}
+
+/* ---------- Foreground UI ---------- */
+.hero__ui {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(var(--nav-h) + 4px) var(--gutter) clamp(20px, 4svh, 40px);
+  pointer-events: none;
+}
+.hero__ui > * {
+  pointer-events: auto;
+}
+
+.hero__coords {
+  display: flex;
+  justify-content: space-between;
+  color: var(--bone-dim);
+  pointer-events: none;
+}
+
+.hero__bottom {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 24px;
+}
+
+.hero__role {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: clamp(28px, 3.3vw, 56px);
+  line-height: 0.98;
+}
+.hero__role-amp {
+  color: var(--sun);
+  margin: 0.4em 0 0.2em;
+}
+
+.hero__scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  color: var(--bone-dim);
+  transition: color 0.3s;
+}
+.hero__scroll:hover {
+  color: var(--bone);
+}
+.hero__scroll-track {
+  position: relative;
+  width: 1px;
+  height: 64px;
+  background: var(--line);
+  overflow: hidden;
+}
+.hero__scroll-dot {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 3px;
+  height: 18px;
+  background: var(--sun);
+  animation: scroll-dot 2.2s var(--ease-inout) infinite;
+}
+@keyframes scroll-dot {
+  0% { transform: translateY(-100%); }
+  60%, 100% { transform: translateY(360%); }
+}
+
+.hero__intro {
+  justify-self: end;
+  max-width: 34ch;
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.5;
+  color: var(--bone-dim);
+}
+
+@media (max-width: 760px) {
+  .hero__name {
+    top: 27svh;
+  }
+  .hero__first {
+    font-size: 25.5vw;
+  }
+  .hero__last {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-top: 0.15em;
+    font-size: 10.5vw;
+    text-align: center;
+  }
+  .hero__bottom {
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+  }
+  .hero__role {
+    grid-column: 1 / -1;
+    font-size: clamp(30px, 9vw, 44px);
+  }
+  .hero__intro {
+    justify-self: start;
+    font-size: 13.5px;
+    max-width: 30ch;
+  }
+  .hero__scroll {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .hero__scroll .mono {
+    display: none;
+  }
+  .hero__coords span:last-child {
+    display: none;
+  }
+}

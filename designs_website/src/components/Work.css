@@ -1,0 +1,295 @@
+.work {
+  position: relative;
+  background: var(--ink);
+}
+
+.work__pin {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.work__bgword {
+  position: absolute;
+  left: 0;
+  bottom: -0.12em;
+  z-index: 0;
+  font-size: 30vw;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(236, 230, 218, 0.09);
+  pointer-events: none;
+}
+
+.work__track {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100%;
+  gap: 7vw;
+  padding: 0 10vw 0 var(--gutter);
+  width: max-content;
+  will-change: transform;
+}
+
+/* ---------- Intro panel ---------- */
+.work__intro {
+  flex: 0 0 auto;
+  width: 46vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  padding-top: var(--nav-h);
+}
+.work__label {
+  color: var(--bone-dim);
+}
+.work__title {
+  font-size: clamp(64px, 7.6vw, 180px);
+}
+.work__title-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.04em;
+}
+.work__title-line > span {
+  display: block;
+}
+.work__title .serif {
+  text-transform: none;
+  font-size: 1.12em;
+  letter-spacing: -0.03em;
+  color: var(--sun);
+  line-height: 0.8;
+  padding-left: 0.6em;
+}
+.work__sub {
+  max-width: 36ch;
+  color: var(--bone-dim);
+}
+.work__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--bone);
+}
+
+/* ---------- Project panel ---------- */
+.project {
+  flex: 0 0 auto;
+  width: 72vw;
+  display: grid;
+  grid-template-columns: 46vw 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 2.5vw;
+  row-gap: 16px;
+  align-content: start;
+  padding: calc(var(--nav-h) + 6svh) 0 13svh;
+}
+.project--low {
+  align-content: end;
+}
+
+.project__meta {
+  grid-column: 1;
+  display: flex;
+  justify-content: space-between;
+  color: var(--bone-dim);
+}
+.project__reveal-wrap {
+  overflow: hidden;
+}
+.project__reveal {
+  display: inline-block;
+}
+
+.project__media {
+  grid-column: 1;
+  grid-row: 2;
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  max-height: 58svh;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--ink-3);
+}
+.project__img {
+  position: absolute;
+  top: 0;
+  left: -9%;
+  width: 118%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 1.2s var(--ease-out),
+    filter 0.8s;
+  will-change: transform;
+}
+.project__media:hover .project__img {
+  transform: scale(1.04);
+}
+.distort-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+}
+
+.project__body {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: end;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.project--low .project__body {
+  align-self: start;
+}
+
+.project__title {
+  font-size: clamp(56px, 6.6vw, 128px);
+  margin-left: -9vw;
+  overflow: hidden;
+  padding-bottom: 0.05em;
+  width: calc(100% + 9vw);
+  line-height: 0.84;
+  mix-blend-mode: difference;
+  color: var(--bone);
+  pointer-events: none;
+}
+.project__title-inner {
+  display: block;
+}
+.project__desc {
+  max-width: 34ch;
+  color: var(--bone-dim);
+}
+
+.project__facts {
+  display: grid;
+  gap: 12px;
+}
+.project__facts > div {
+  display: grid;
+  grid-template-columns: 5.5em 1fr;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.project__facts dt {
+  color: var(--bone-dim);
+  padding-top: 0.3em;
+}
+.project__facts dd {
+  font-size: 15px;
+}
+
+.project__actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  padding: 4px;
+  margin: -4px;
+}
+.project__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---------- Outro + progress ---------- */
+.work__outro {
+  flex: 0 0 auto;
+  width: 34vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 28px;
+}
+.work__outro-text {
+  font-size: clamp(36px, 4vw, 72px);
+  line-height: 1;
+}
+
+.work__progress {
+  position: absolute;
+  z-index: 2;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: clamp(18px, 3.5svh, 36px);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  color: var(--bone-dim);
+}
+.work__progress b {
+  color: var(--bone);
+  font-weight: 500;
+}
+.work__progress-bar {
+  height: 1px;
+  background: var(--line);
+  overflow: hidden;
+}
+.work__progress-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--sun);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* ---------- Mobile / reduced motion: vertical stack ---------- */
+@media (max-width: 899px), (prefers-reduced-motion: reduce) {
+  .work__pin {
+    height: auto;
+    overflow: visible;
+    padding: clamp(80px, 14vw, 140px) 0;
+  }
+  .work__bgword,
+  .work__progress,
+  .work__hint {
+    display: none;
+  }
+  .work__track {
+    flex-direction: column;
+    width: auto;
+    gap: clamp(88px, 16vw, 140px);
+    padding: 0 var(--gutter);
+  }
+  .work__intro,
+  .work__outro {
+    width: auto;
+    padding-top: 0;
+  }
+  .project {
+    width: auto;
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+  .project__media {
+    grid-row: auto;
+    max-height: none;
+  }
+  .project__body {
+    grid-column: 1;
+    grid-row: auto;
+    align-self: start;
+  }
+  .project__title {
+    margin-left: 0;
+    margin-top: -0.55em;
+    font-size: clamp(48px, 13vw, 110px);
+    width: auto;
+  }
+}

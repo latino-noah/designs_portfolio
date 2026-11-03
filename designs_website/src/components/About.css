@@ -1,0 +1,237 @@
+.about {
+  background: var(--ink);
+  padding-top: clamp(64px, 10vw, 160px);
+}
+
+/* ---------- Statement ---------- */
+.about__intro {
+  position: relative;
+}
+.about__label {
+  position: absolute;
+  top: 0.9em;
+  left: 0;
+  color: var(--bone-dim);
+}
+.about__statement {
+  font-weight: 500;
+  font-size: clamp(30px, 4.6vw, 84px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-indent: 22%;
+  max-width: 18em;
+}
+.about__word {
+  display: inline;
+}
+.about__pill {
+  display: inline-block;
+  width: 1.9em;
+  height: 0.78em;
+  border-radius: 999px;
+  overflow: hidden;
+  vertical-align: -0.04em;
+  text-indent: 0;
+}
+.about__pill img {
+  width: 1.9em;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Portrait + interests ---------- */
+.about__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gutter);
+  margin-top: clamp(96px, 14vw, 220px);
+  align-items: start;
+}
+.about__figure {
+  grid-column: 2 / span 4;
+  position: relative;
+}
+.about__portrait {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--ink-3);
+}
+.about__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+.about__caption {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  color: var(--bone-dim);
+}
+
+.about__badge {
+  position: absolute;
+  right: -64px;
+  top: 52%;
+  width: 150px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+.about__badge svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.about__badge text {
+  fill: var(--bone);
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+.about__badge-core {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--sun);
+  box-shadow: 0 0 30px var(--sun);
+}
+
+.about__interests {
+  grid-column: 8 / span 5;
+  padding-top: 18%;
+}
+.about__sub {
+  color: var(--bone-dim);
+  margin-bottom: 2.4em;
+}
+.about__interest {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.4em 1fr;
+  column-gap: 12px;
+  padding: 28px 0 32px;
+  border-top: 1px solid var(--line);
+}
+.about__interest:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.about__interest-n {
+  color: var(--sun);
+  padding-top: 0.9em;
+}
+.about__interest h3 {
+  font-size: var(--fs-h3);
+  line-height: 1;
+  margin-bottom: 0.4em;
+}
+.about__interest p {
+  grid-column: 2;
+  color: var(--bone-dim);
+  max-width: 44ch;
+}
+
+/* ---------- Approach ---------- */
+.about__approach {
+  margin-top: clamp(120px, 16vw, 240px);
+}
+.about__approach-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(48px, 6vw, 88px);
+}
+.about__approach-head .about__sub {
+  margin: 0;
+}
+.about__approach-title {
+  font-size: clamp(36px, 5.4vw, 96px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+}
+.about__approach-title .serif {
+  font-weight: 400;
+}
+
+.about__route {
+  position: relative;
+}
+.about__route-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--sun), var(--bone-faint));
+  transform-origin: left center;
+}
+.about__steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gutter);
+}
+.about__step-dot {
+  display: block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1.5px solid var(--sun);
+  background: var(--ink);
+  margin-bottom: 32px;
+}
+.about__step:first-child .about__step-dot {
+  background: var(--sun);
+}
+.about__step-n {
+  color: var(--bone-dim);
+}
+.about__step h3 {
+  font-size: clamp(24px, 2.2vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0.3em 0 0.4em;
+}
+.about__step p {
+  color: var(--bone-dim);
+  max-width: 30ch;
+}
+
+@media (max-width: 900px) {
+  .about__label {
+    position: static;
+    margin-bottom: 24px;
+  }
+  .about__statement {
+    text-indent: 0;
+  }
+  .about__figure {
+    grid-column: 1 / span 10;
+  }
+  .about__badge {
+    right: -30px;
+    width: 116px;
+  }
+  .about__interests {
+    grid-column: 1 / -1;
+    padding-top: 40px;
+  }
+  .about__steps {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 48px;
+  }
+  .about__route-line {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .about__steps {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,116 @@
+.notes {
+  position: relative;
+  padding: clamp(40px, 6vw, 100px) 0 clamp(80px, 10vw, 160px);
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.notes__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 0 var(--gutter);
+  color: var(--bone-dim);
+}
+.notes__quote {
+  font-size: clamp(22px, 2.4vw, 40px);
+  color: var(--bone);
+  text-align: right;
+}
+
+.notes__stage {
+  position: relative;
+  height: clamp(640px, 110vh, 1100px);
+}
+
+.notes__type {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 2;
+  translate: 0 -50%;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.notes__type-inner {
+  font-size: clamp(110px, 21vw, 380px);
+  color: var(--bone);
+  padding-left: 4vw;
+}
+
+.notes__photo {
+  position: absolute;
+  z-index: 3;
+  will-change: transform;
+}
+.notes__photo-frame {
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.notes__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.notes__photo figcaption {
+  margin-top: 10px;
+  color: var(--bone-dim);
+}
+
+/* Composition — deliberately asymmetric */
+.notes__photo--1 {
+  left: 6vw;
+  top: 4%;
+  width: clamp(150px, 17vw, 300px);
+}
+.notes__photo--1 .notes__photo-frame {
+  aspect-ratio: 3 / 4;
+}
+.notes__photo--2 {
+  /* sits BEHIND the type */
+  z-index: 1;
+  left: 34vw;
+  top: 26%;
+  width: clamp(200px, 26vw, 460px);
+}
+.notes__photo--2 .notes__photo-frame {
+  aspect-ratio: 4 / 5;
+}
+.notes__photo--2 img {
+  filter: grayscale(1) contrast(1.1) brightness(0.7);
+}
+.notes__photo--3 {
+  right: 8vw;
+  top: 2%;
+  width: clamp(140px, 15vw, 270px);
+}
+.notes__photo--3 .notes__photo-frame {
+  aspect-ratio: 3 / 4;
+}
+.notes__photo--4 {
+  right: 20vw;
+  bottom: 2%;
+  width: clamp(170px, 19vw, 340px);
+}
+.notes__photo--4 .notes__photo-frame {
+  aspect-ratio: 4 / 5;
+}
+
+@media (max-width: 760px) {
+  .notes__head {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .notes__quote {
+    text-align: left;
+  }
+  .notes__stage {
+    height: 150vw;
+    min-height: 560px;
+  }
+  .notes__photo--1 { left: 4vw; top: 6%; width: 36vw; }
+  .notes__photo--2 { left: 30vw; top: 32%; width: 44vw; }
+  .notes__photo--3 { right: 4vw; top: 2%; width: 30vw; }
+  .notes__photo--4 { right: 8vw; bottom: 4%; width: 38vw; }
+}
