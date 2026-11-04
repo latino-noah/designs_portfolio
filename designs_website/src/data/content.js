@@ -114,7 +114,7 @@ export const projects = [
     kind: 'Agency website',
     year: '2025',
     image: '/images/web/work-5.webp',
-    alt: 'Dark agency website hero for web design, video and photography services',
+    alt: 'Light agency website hero with the headline WEB DESIGN, video & PHOTOGRAPHY and a photo of a camera tossed in the air',
     description:
       'A conversion-focused site for a small studio offering web design, video and photography — clear services, pricing and trust signals.',
     role: 'UI design, front-end development',
