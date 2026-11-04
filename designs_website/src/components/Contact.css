@@ -212,6 +212,16 @@
   text-transform: uppercase;
 }
 
+.contact--bar {
+  padding-top: 0;
+}
+.contact--bar::before {
+  display: none;
+}
+.contact--bar .contact__bottom {
+  border-top: 1px solid var(--line);
+}
+
 @media (max-width: 760px) {
   .contact__cta {
     grid-template-columns: 1fr;

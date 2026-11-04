@@ -282,6 +282,20 @@ button:focus-visible .roll__inner {
   border-color: var(--sun);
 }
 
+/* Solid variant: filled with the accent, wipes to bone on hover. */
+.pill--solid {
+  background: var(--sun);
+  border-color: var(--sun);
+  color: var(--ink);
+}
+.pill--solid::before {
+  background: var(--bone);
+}
+.pill--solid:hover,
+.pill--solid:focus-visible {
+  border-color: var(--bone);
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *,

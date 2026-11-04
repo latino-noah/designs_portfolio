@@ -115,7 +115,7 @@
   font-variation-settings: 'wdth' 125;
   text-transform: uppercase;
   letter-spacing: -0.045em;
-  font-size: clamp(44px, min(10.5vh, 9vw), 140px);
+  font-size: clamp(40px, min(9vh, 9vw), 128px);
   line-height: 0.92;
 }
 .menu__link .roll__dup {
@@ -144,6 +144,10 @@
 }
 .menu__list .menu__link:hover,
 .menu__list .menu__link:focus-visible {
+  opacity: 1;
+}
+.menu__link[aria-current='page'] .menu__num {
+  color: var(--sun);
   opacity: 1;
 }
 .menu__link {

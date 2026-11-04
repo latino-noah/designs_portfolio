@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { initLenis, lockScroll, ScrollTrigger } from './lib/motion';
+import { initLenis, lockScroll, scrollToTarget, ScrollTrigger } from './lib/motion';
 import Loader from './components/Loader';
 import Cursor from './components/Cursor';
 import Nav from './components/Nav';
@@ -18,7 +18,13 @@ export default function App() {
 
   useEffect(() => {
     lockScroll(!ready);
-    if (ready) ScrollTrigger.refresh();
+    if (!ready) return;
+    ScrollTrigger.refresh();
+    // Arriving from another page via "/#section": glide there once the intro has started.
+    const target = window.location.hash && document.querySelector(window.location.hash);
+    if (!target) return;
+    const id = setTimeout(() => scrollToTarget(target), 600);
+    return () => clearTimeout(id);
   }, [ready]);
 
   // Re-measure once web fonts settle (titles change size when they swap in).

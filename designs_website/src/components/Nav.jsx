@@ -8,7 +8,11 @@ import './Nav.css';
 const SUMMIT = 2964; // metres at the bottom of the page — a small nod to the hero range
 const MENU_RIDGE = ridgePath({ seed: 19, base: 0.55, amp: 0.35, peaks: [{ x: 0.7, h: 0.25, w: 0.06 }], width: 1600, height: 200, detail: 7 });
 
-export default function Nav({ ready }) {
+/** Hash links point at sections on the home page; from other pages they become "/#section". */
+const resolveHref = (href, home) => (home || !href.startsWith('#') ? href : href === '#top' ? '/' : `/${href}`);
+
+export default function Nav({ ready, page = 'home' }) {
+  const home = page === 'home';
   const root = useRef(null);
   const menu = useRef(null);
   const toggle = useRef(null);
@@ -66,9 +70,7 @@ export default function Nav({ ready }) {
     const t = tl.current;
     if (!t) return;
     lockScroll(open);
-    const main = document.getElementById('main');
-    const footer = document.getElementById('contact');
-    [main, footer].forEach((el) => el && (el.inert = open));
+    document.querySelectorAll('main, footer').forEach((el) => (el.inert = open));
 
     if (open) {
       t.timeScale(1).play();
@@ -84,6 +86,12 @@ export default function Nav({ ready }) {
   }, [open]);
 
   const go = (e, href) => {
+    // Scroll in place when the target is on this page; otherwise let the browser navigate.
+    const local = href.startsWith('#') && (href === '#top' ? home : document.querySelector(href));
+    if (!local) {
+      setOpen(false);
+      return;
+    }
     e.preventDefault();
     const wasOpen = open;
     setOpen(false);
@@ -95,7 +103,12 @@ export default function Nav({ ready }) {
     <div ref={root} className={`nav-root ${open ? 'is-open' : ''}`}>
       <header className="nav">
       <div className="nav__bar">
-        <a href="#top" className="nav__brand nav__item" onClick={(e) => go(e, '#top')} aria-label="Back to top">
+        <a
+          href={resolveHref('#top', home)}
+          className="nav__brand nav__item"
+          onClick={(e) => go(e, '#top')}
+          aria-label={home ? 'Back to top' : 'Home'}
+        >
           <RollText>
             {person.firstName} <span className="serif">{person.lastName}</span>
           </RollText>
@@ -135,7 +148,12 @@ export default function Nav({ ready }) {
           <ol className="menu__list">
             {nav.map((item, i) => (
               <li key={item.href} className="menu__item">
-                <a href={item.href} className="menu__link" onClick={(e) => go(e, item.href)}>
+                <a
+                  href={resolveHref(item.href, home)}
+                  className="menu__link"
+                  aria-current={item.href === `/${page}/` ? 'page' : undefined}
+                  onClick={(e) => go(e, item.href)}
+                >
                   <span className="menu__link-inner">
                     <span className="menu__num mono">0{i}</span>
                     <RollText dupClassName="serif">{item.label}</RollText>

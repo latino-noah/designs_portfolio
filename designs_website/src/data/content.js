@@ -31,6 +31,7 @@ export const nav = [
   { label: 'Work', href: '#work' },
   { label: 'Skills', href: '#skills' },
   { label: 'Route', href: '#route' },
+  { label: 'Hire me', href: '/hire/' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -253,3 +254,73 @@ export const route = [
     alt: '+2210 m',
   },
 ];
+
+/** "Hire me" page (/hire/). Projects are picked from `projects` above by id — add an id to `work` to show it. */
+export const hire = {
+  availability: 'Available for new projects',
+  heroImage: '/images/web/gallery-9.webp',
+  heroAlt: 'Two people standing on the edge of a tall sea cliff above calm water',
+  services: [
+    {
+      n: '01',
+      label: 'Interface',
+      title: 'Web Design',
+      text: 'Designing modern, visually engaging websites with a strong focus on user experience, aesthetics and usability.',
+      image: '/images/web/work-6.webp',
+      alt: 'Travel website design with the word TRAVEL masked behind a mountain peak',
+    },
+    {
+      n: '02',
+      label: 'Code',
+      title: 'Web Development',
+      text: 'Turning designs into functional, responsive websites using modern web technologies.',
+      image: '/images/web/work-4.webp',
+      alt: 'Interactive product page with a floating 3D sneaker',
+    },
+    {
+      n: '03',
+      label: 'Stills',
+      title: 'Photography',
+      text: 'Creating high-quality visual content that captures products, brands, people and atmosphere.',
+      image: '/images/web/gallery-7.webp',
+      alt: 'Sunlight falling across white sea cliffs above turquoise water',
+    },
+    {
+      n: '04',
+      label: 'Motion',
+      title: 'Videography',
+      text: 'Producing cinematic video content for brands, businesses and creative projects.',
+      image: '/images/web/gallery-2.webp',
+      alt: 'A backflip off a harbour pier, frozen mid-air against a blue sky',
+    },
+    {
+      n: '05',
+      label: 'Post',
+      title: 'Video Editing',
+      text: 'Editing footage into engaging, polished videos with attention to pacing, transitions, colour grading and storytelling.',
+      image: '/images/web/gallery-8.webp',
+      alt: 'Golden sunset over the sea with a mountain ridge on the horizon',
+    },
+  ],
+  about: {
+    image: '/images/web/gallery-4.webp',
+    alt: 'Noah standing on a boat deck with his arms spread wide against a blue sky',
+    paragraphs: [
+      "I'm Noah, a young creative from Rotterdam with a fascination for digital design, technology and visual storytelling.",
+      'I like working on both sides of the screen: designing an interface and then building it in code, or framing a shot and then shaping it in the edit. Combining creativity with technical skills lets me take an idea from first sketch to a finished website or video.',
+    ],
+  },
+  work: [
+    { id: 'summit', category: 'Web Design · Development' },
+    { id: 'urban-digital', category: 'Web Design · Development' },
+    { id: 'nts-goons', category: '3D · Development' },
+    { id: 'gianni-watson', category: 'Art Direction · Development' },
+  ],
+  process: [
+    { n: '01', title: 'Discover', text: 'Understanding the brand, goals and creative direction.' },
+    { n: '02', title: 'Concept', text: 'Developing ideas, references and visual concepts.' },
+    { n: '03', title: 'Create', text: 'Designing, developing, photographing or producing the project.' },
+    { n: '04', title: 'Deliver', text: 'Polishing the details and delivering the final result.' },
+  ],
+  projectTypes: ['Web design', 'Web development', 'Photography', 'Videography', 'Video editing', 'Something else'],
+};

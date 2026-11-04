@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'node:path';
 
 export default defineConfig({
   plugins: [react()],
@@ -8,6 +9,11 @@ export default defineConfig({
   preview: { host: true, allowedHosts: ['.app.github.dev'] },
   build: {
     rollupOptions: {
+      // Two pages: the portfolio (/) and the Hire me page (/hire/)
+      input: {
+        main: resolve(import.meta.dirname, 'index.html'),
+        hire: resolve(import.meta.dirname, 'hire/index.html'),
+      },
       output: {
         manualChunks(id) {
           if (id.includes('node_modules/three')) return 'three';

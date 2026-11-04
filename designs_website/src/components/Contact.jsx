@@ -7,13 +7,15 @@ import './Contact.css';
 
 const RIDGE = ridgePath({ seed: 31, base: 0.7, amp: 0.3, peaks: [{ x: 0.3, h: 0.35, w: 0.07 }, { x: 0.78, h: 0.25, w: 0.05 }], width: 1600, height: 300, detail: 8 });
 
-export default function Contact() {
+/** variant="bar": only the bottom strip, for pages that end with their own contact section. */
+export default function Contact({ variant = 'full' }) {
   const root = useRef(null);
   const [copied, setCopied] = useState(false);
   const time = useLocalTime(person.timezone);
 
   useGSAP(
     () => {
+      if (variant === 'bar') return;
       const mm = gsap.matchMedia();
       mm.add(MOTION, () => {
         // The sun rises behind the headline as you arrive — bookending the hero sunset.
@@ -77,6 +79,29 @@ export default function Contact() {
     }
   };
 
+  const bottom = (
+    <div className="contact__bottom mono">
+      <span>
+        © {new Date().getFullYear()} {person.firstName} {person.lastName}
+      </span>
+      <span>
+        {person.city} {time} — {person.coords}
+      </span>
+      <span>Designed &amp; built by hand</span>
+      <button onClick={() => scrollToTarget(0, { duration: 2.6 })} className="contact__top">
+        <RollText>Back to summit</RollText> <Arrow dir="n" />
+      </button>
+    </div>
+  );
+
+  if (variant === 'bar') {
+    return (
+      <footer ref={root} className="contact contact--bar">
+        <div className="contact__inner">{bottom}</div>
+      </footer>
+    );
+  }
+
   return (
     <footer ref={root} id="contact" className="contact" aria-labelledby="contact-title">
       <div className="contact__sun" aria-hidden="true" />
@@ -131,18 +156,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="contact__bottom mono">
-          <span>
-            © {new Date().getFullYear()} {person.firstName} {person.lastName}
-          </span>
-          <span>
-            {person.city} {time} — {person.coords}
-          </span>
-          <span>Designed &amp; built by hand</span>
-          <button onClick={() => scrollToTarget(0, { duration: 2.6 })} className="contact__top">
-            <RollText>Back to summit</RollText> <Arrow dir="n" />
-          </button>
-        </div>
+        {bottom}
       </div>
     </footer>
   );

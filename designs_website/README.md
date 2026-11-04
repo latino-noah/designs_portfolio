@@ -27,6 +27,7 @@ Images go in `public/images/`. Run `npm run images` to generate `public/images/w
 | `components/Skills` | Sticky stacking panels, variable-width type and "elevation profile" skill indicators |
 | `components/Route` | Timeline with a sticky year readout |
 | `components/Contact` | Rising sun, characters that stretch near the cursor, a magnetic CTA |
+| `pages/Hire` | The Hire me page at `/hire/` (its own entry, `hire/index.html`). Content lives in `hire` in `content.js`; add a project id to `hire.work` to show it there |
 | `lib/ridges.js` | Deterministic mountain-ridge generator used across the site |
 
 The mountain shapes in the hero come from the `opts` objects in `Hero.jsx`. Change `seed` for a different range, and `peaks` to move summits behind specific letters.
