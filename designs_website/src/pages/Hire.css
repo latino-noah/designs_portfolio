@@ -75,7 +75,8 @@
   inset: -6% 0;
   will-change: transform;
 }
-.frame img {
+.frame img,
+.frame video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -230,7 +231,8 @@
 }
 
 /* Subtle hover: the photo breathes, the rule extends, the copy brightens. */
-.svc:hover .frame img {
+.svc:hover .frame img,
+.svc:hover .frame video {
   transform: scale(1.05);
 }
 .svc:hover .svc__rule {
@@ -257,21 +259,17 @@
 .svc--3 .svc__media { aspect-ratio: 3 / 4; }
 .svc--3 .svc__body { grid-column: 8 / -1; }
 
-/* Videography: a letterboxed, cinematic frame */
+/* Videography: a portrait (9:16) clip */
 .svc--4 .svc__meta,
-.svc--4 .svc__media { grid-column: 2 / 12; }
-.svc--4 .svc__media { aspect-ratio: 2.39 / 1; }
-.svc--4 .svc__media img { object-position: 50% 12%; }
-.svc--4 .svc__body {
-  grid-column: 7 / 12;
-  grid-row: 3;
-  padding-top: 16px;
-}
+.svc--4 .svc__media { grid-column: 8 / 11; }
+.svc--4 .svc__media { aspect-ratio: 9 / 16; }
+.svc--4 .svc__body { grid-column: 2 / 7; align-self: center; }
 
+/* Video editing: a wide 16:9 clip */
 .svc--5 .svc__meta,
-.svc--5 .svc__media { grid-column: 1 / 6; }
-.svc--5 .svc__media { aspect-ratio: 4 / 5; }
-.svc--5 .svc__body { grid-column: 7 / 12; align-self: center; }
+.svc--5 .svc__media { grid-column: 6 / -1; }
+.svc--5 .svc__media { aspect-ratio: 16 / 9; }
+.svc--5 .svc__body { grid-column: 1 / 5; align-self: center; }
 
 /* ---------- About me ---------- */
 .ha__title {
@@ -614,9 +612,7 @@
     padding-top: 10px;
   }
   .svc--2 .svc__meta,
-  .svc--2 .svc__media,
-  .svc--5 .svc__meta,
-  .svc--5 .svc__media {
+  .svc--2 .svc__media {
     width: 74%;
   }
   .svc--2 .svc__meta,
@@ -628,8 +624,10 @@
     width: 82%;
     justify-self: center;
   }
+  .svc--4 .svc__meta,
   .svc--4 .svc__media {
-    aspect-ratio: 16 / 9;
+    width: 62%;
+    justify-self: center;
   }
 
   .ha__indent {
@@ -685,10 +683,12 @@
   .svc--2 .svc__media,
   .svc--3 .svc__meta,
   .svc--3 .svc__media,
-  .svc--5 .svc__meta,
-  .svc--5 .svc__media,
   .hw__grid .hwk:nth-child(even) {
     width: 100%;
+  }
+  .svc--4 .svc__meta,
+  .svc--4 .svc__media {
+    width: 78%;
   }
   .hwk__info {
     grid-template-columns: auto 1fr;
@@ -702,5 +702,12 @@
   }
   .hf__row {
     grid-template-columns: 1fr;
+  }
+}
+
+/* No parallax with reduced motion, so frames don't need the overhang (keeps video controls in view). */
+@media (prefers-reduced-motion: reduce) {
+  .frame__inner {
+    inset: 0;
   }
 }

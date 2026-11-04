@@ -292,6 +292,7 @@ export const hire = {
       text: 'Producing cinematic video content for brands, businesses and creative projects.',
       image: '/images/web/gallery-2.webp',
       alt: 'A backflip off a harbour pier, frozen mid-air against a blue sky',
+      video: '/video/videography.mp4', // shown instead of the image; image is the fallback poster
     },
     {
       n: '05',
@@ -300,6 +301,7 @@ export const hire = {
       text: 'Editing footage into engaging, polished videos with attention to pacing, transitions, colour grading and storytelling.',
       image: '/images/web/gallery-8.webp',
       alt: 'Golden sunset over the sea with a mountain ridge on the horizon',
+      video: '/video/videoediting.mp4',
     },
   ],
   about: {

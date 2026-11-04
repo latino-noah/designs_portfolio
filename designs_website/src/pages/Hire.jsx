@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { gsap, useGSAP, ScrollTrigger, MOTION, initLenis, scrollToTarget } from '../lib/motion';
+import { gsap, useGSAP, ScrollTrigger, MOTION, initLenis, scrollToTarget, prefersReducedMotion } from '../lib/motion';
 import { person, hire, projects } from '../data/content';
 import { Arrow, Magnetic, RollText } from '../components/ui';
 import Cursor from '../components/Cursor';
@@ -24,6 +24,40 @@ const Frame = ({ src, alt, className = '', width, height, eager, as: Tag = 'div'
     </div>
   </Tag>
 );
+
+/** Muted looping clip in the same frame. Plays only while on screen; with reduced motion it waits for the viewer. */
+function FrameVideo({ src, poster, label, className = '' }) {
+  const ref = useRef(null);
+  const [reduced] = useState(prefersReducedMotion);
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v || reduced) return;
+    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()), {
+      rootMargin: '10% 0px',
+    });
+    io.observe(v);
+    return () => io.disconnect();
+  }, [reduced]);
+
+  return (
+    <div className={`frame ${className}`} data-media>
+      <div className="frame__inner">
+        <video
+          ref={ref}
+          src={src}
+          poster={poster}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          controls={reduced}
+          aria-label={label}
+        />
+      </div>
+    </div>
+  );
+}
 
 const SectionLabel = ({ n, children }) => (
   <p className="mono hire-label" data-fade>
@@ -115,7 +149,11 @@ function Services() {
               <span className="svc__rule" aria-hidden="true" />
               <span>{s.label}</span>
             </p>
-            <Frame className="svc__media" src={s.image} alt={s.alt} />
+            {s.video ? (
+              <FrameVideo className="svc__media" src={s.video} poster={s.image} label={s.alt} />
+            ) : (
+              <Frame className="svc__media" src={s.image} alt={s.alt} />
+            )}
             <div className="svc__body" data-fade>
               <h3 className="svc__title display">{s.title}</h3>
               <p className="svc__text">{s.text}</p>
