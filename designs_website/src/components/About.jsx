@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { gsap, useGSAP, MOTION } from '../lib/motion';
 import { about, person } from '../data/content';
+import { responsive, sized, SIZES } from '../lib/img';
 import './About.css';
 
 /** "[accent words]" → accent spans, "{img:N}" → inline photo pill, everything else → word spans. */
@@ -12,7 +13,7 @@ function Statement({ text, images }) {
     if (img) {
       return [
         <span key={key++} className="about__pill" aria-hidden="true">
-          <img src={images[Number(img[1])]} alt="" loading="lazy" />
+          <img src={sized(images[Number(img[1])], 480)} alt="" loading="lazy" decoding="async" />
         </span>,
         ' ',
       ];
@@ -118,7 +119,15 @@ export default function About() {
       <div className="about__grid">
         <figure className="about__figure">
           <div className="about__portrait">
-            <img src={about.portrait} alt={about.portraitAlt} width="1050" height="1400" loading="lazy" />
+            <img
+              {...responsive(about.portrait)}
+              sizes={SIZES.aboutPortrait}
+              alt={about.portraitAlt}
+              width="1050"
+              height="1400"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <CircleBadge />
           <figcaption className="mono about__caption">

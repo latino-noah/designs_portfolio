@@ -2,18 +2,15 @@ import { useRef, useState } from 'react';
 import { gsap, useGSAP, prefersReducedMotion } from '../lib/motion';
 import { ridgeLine } from '../lib/ridges';
 import { person, about, projects } from '../data/content';
+import { preloadImage, SIZES } from '../lib/img';
 import './Loader.css';
 
-const PRELOAD = [about.portrait, ...projects.slice(0, 3).map((p) => p.image)];
+// Preloaded with the same srcset/sizes as their <img>, so phones fetch the small file only once.
+const PRELOAD = [
+  [about.portrait, SIZES.aboutPortrait],
+  ...projects.slice(0, 3).map((p) => [p.image, SIZES.project]),
+];
 const LINE = ridgeLine({ seed: 3, base: 0.62, amp: 0.3, peaks: [{ x: 0.55, h: 0.3, w: 0.08 }], detail: 7, width: 1000, height: 200 });
-
-function loadImage(src) {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.onload = img.onerror = resolve;
-    img.src = src;
-  });
-}
 
 /**
  * Counts 000 → 100 against real asset loading (images + fonts), draws a ridge line,
@@ -30,7 +27,7 @@ export default function Loader({ onDone }) {
       const line = root.current.querySelector('.loader__line path');
       const state = { shown: 0, real: 0 };
 
-      const tasks = [...PRELOAD.map(loadImage), document.fonts?.ready ?? Promise.resolve()];
+      const tasks = [...PRELOAD.map(([src, sizes]) => preloadImage(src, sizes)), document.fonts?.ready ?? Promise.resolve()];
       let finished = 0;
       tasks.forEach((t) =>
         Promise.resolve(t).finally(() => {

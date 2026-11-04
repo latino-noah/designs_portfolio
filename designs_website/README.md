@@ -6,7 +6,7 @@ React + GSAP (ScrollTrigger, SplitText) + Lenis + Three.js, built with Vite.
 npm install
 npm run dev       # local dev server
 npm run build     # production build → dist/
-npm run images    # regenerate optimised WebP files after adding photos
+npm run images    # regenerate WebP files (+ 480/960px variants for phones) after adding photos
 ```
 
 ## Editing content

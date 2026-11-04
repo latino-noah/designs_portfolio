@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { gsap, useGSAP, MOTION } from '../lib/motion';
 import { fieldNotes } from '../data/content';
+import { responsive, SIZES } from '../lib/img';
 import './FieldNotes.css';
 
 /**
@@ -50,7 +51,7 @@ export default function FieldNotes() {
         {fieldNotes.images.map((img, i) => (
           <figure key={img.src} className={`notes__photo notes__photo--${i + 1}`} data-speed={[0.5, 1, 0.3, 0.8][i]}>
             <div className="notes__photo-frame">
-              <img src={img.src} alt={img.alt} loading="lazy" />
+              <img {...responsive(img.src)} sizes={SIZES.notes} alt={img.alt} loading="lazy" decoding="async" />
             </div>
             <figcaption className="mono">Field note 0{i + 1}</figcaption>
           </figure>

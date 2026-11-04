@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap, useGSAP, DESKTOP, MOTION, isFinePointer, prefersReducedMotion } from '../lib/motion';
 import { projects, person } from '../data/content';
+import { responsive, SIZES } from '../lib/img';
 import { Arrow } from './ui';
 import './Work.css';
 
@@ -105,7 +106,18 @@ export default function Work() {
     let cancelled = false;
     const cleanups = [];
 
-    import('../lib/distortion.js').then(({ default: HoverDistortion }) => {
+    // Three.js is ~130 KB gzipped: only fetch it once the gallery is about a screen away.
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        load();
+      },
+      { rootMargin: '100% 0px' }
+    );
+    io.observe(root.current);
+
+    const load = () => import('../lib/distortion.js').then(({ default: HoverDistortion }) => {
       if (cancelled) return;
       try {
         fx = new HoverDistortion(gsap);
@@ -131,6 +143,7 @@ export default function Work() {
 
     return () => {
       cancelled = true;
+      io.disconnect();
       cleanups.forEach((fn) => fn());
       fx?.destroy();
     };
@@ -183,7 +196,16 @@ export default function Work() {
                 data-cursor="Visit"
                 aria-label={`Visit ${p.title} (opens in a new tab)`}
               >
-                <img className="project__img" src={p.image} alt={p.alt} loading="lazy" width="1400" height="875" />
+                <img
+                  className="project__img"
+                  {...responsive(p.image)}
+                  sizes={SIZES.project}
+                  alt={p.alt}
+                  loading="lazy"
+                  decoding="async"
+                  width="1400"
+                  height="875"
+                />
               </a>
 
               <div className="project__body">

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap, useGSAP, ScrollTrigger, MOTION, initLenis, scrollToTarget, prefersReducedMotion } from '../lib/motion';
 import { person, hire, projects } from '../data/content';
 import { Arrow, Magnetic, RollText } from '../components/ui';
+import { responsive, sized, SIZES } from '../lib/img';
 import Cursor from '../components/Cursor';
 import Nav from '../components/Nav';
 import Contact from '../components/Contact';
@@ -17,40 +18,69 @@ const Line = ({ children, className = '' }) => (
 );
 
 /** Image in a clipped frame; the inner layer is taller than the frame so it can drift on scroll. */
-const Frame = ({ src, alt, className = '', width, height, eager, as: Tag = 'div', ...rest }) => (
+const Frame = ({ src, alt, className = '', width, height, eager, sizes = SIZES.hireFrame, as: Tag = 'div', ...rest }) => (
   <Tag className={`frame ${className}`} data-media {...rest}>
     <div className="frame__inner">
-      <img src={src} alt={alt} width={width} height={height} loading={eager ? 'eager' : 'lazy'} />
+      <img
+        {...responsive(src)}
+        sizes={sizes}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={eager ? 'eager' : 'lazy'}
+        fetchPriority={eager ? 'high' : undefined}
+        decoding={eager ? undefined : 'async'}
+      />
     </div>
   </Tag>
 );
 
-/** Muted looping clip in the same frame. Plays only while on screen; with reduced motion it waits for the viewer. */
+/**
+ * Muted looping clip in the same frame. Nothing (not even the poster) is fetched until it's
+ * about a screen away; it plays only while on screen. With reduced motion it waits for the viewer.
+ */
 function FrameVideo({ src, poster, label, className = '' }) {
   const ref = useRef(null);
   const [reduced] = useState(prefersReducedMotion);
+  const [near, setNear] = useState(false);
 
   useEffect(() => {
     const v = ref.current;
-    if (!v || reduced) return;
-    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()), {
+    if (!v) return;
+    const nearby = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        setNear(true);
+        nearby.disconnect();
+      },
+      { rootMargin: '100% 0px' }
+    );
+    nearby.observe(v);
+    return () => nearby.disconnect();
+  }, []);
+
+  // Start observing visibility only once the source is set, so play() never races an empty <video>.
+  useEffect(() => {
+    const v = ref.current;
+    if (!v || !near || reduced) return;
+    const visible = new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()), {
       rootMargin: '10% 0px',
     });
-    io.observe(v);
-    return () => io.disconnect();
-  }, [reduced]);
+    visible.observe(v);
+    return () => visible.disconnect();
+  }, [near, reduced]);
 
   return (
     <div className={`frame ${className}`} data-media>
       <div className="frame__inner">
         <video
           ref={ref}
-          src={src}
-          poster={poster}
+          src={near ? src : undefined}
+          poster={near ? sized(poster, 960) : undefined}
           muted
           loop
           playsInline
-          preload="metadata"
+          preload={near ? 'metadata' : 'none'}
           controls={reduced}
           aria-label={label}
         />
@@ -93,7 +123,15 @@ function Hero() {
         </h1>
 
         <figure className="hh__figure">
-          <Frame className="hh__media" src={hire.heroImage} alt={hire.heroAlt} width="788" height="1400" eager />
+          <Frame
+            className="hh__media"
+            src={hire.heroImage}
+            alt={hire.heroAlt}
+            width="788"
+            height="1400"
+            sizes={SIZES.hireHero}
+            eager
+          />
           <figcaption className="mono hire-caption" data-intro>
             <span>Fig. 01</span>
             <span>Take the leap</span>

@@ -205,8 +205,9 @@ ol {
 
 /* ---------- Grain ---------- */
 .grain {
+  /* Only needs to overhang by more than the 5% it drifts; a smaller layer is much cheaper to composite. */
   position: fixed;
-  inset: -50%;
+  inset: -10%;
   z-index: 900;
   pointer-events: none;
   opacity: 0.075;
