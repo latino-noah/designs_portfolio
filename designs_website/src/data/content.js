@@ -36,12 +36,11 @@ export const nav = [
 ];
 
 export const about = {
-  // Words wrapped in [brackets] get the sun accent colour. {img:N} inserts an inline photo pill.
+  // Words wrapped in [brackets] get the sun accent colour.
   statement:
-    "I'm Noah — a [creative developer] and [UI designer] from Rotterdam. I design interfaces that feel {img:0} alive, then build them with code that moves with intent. Half designer, half engineer, fully obsessed with the {img:1} details nobody asks for.",
-  inlineImages: ['/images/web/gallery-2.webp', '/images/web/gallery-6.webp'],
-  portrait: '/images/web/gallery-1.webp',
-  portraitAlt: 'Noah silhouetted against a sunset, standing in the sea and pointing at the horizon',
+    "I'm Noah — a [creative developer] and [UI designer] from Rotterdam. I design interfaces that feel alive, then build them with code that moves with intent. Half designer, half engineer, fully obsessed with the details nobody asks for.",
+  portrait: '/images/web/me.webp',
+  portraitAlt: 'Noah in a black jacket standing on a station platform at night',
   interests: [
     {
       title: 'UI / UX design',

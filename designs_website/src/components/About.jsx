@@ -1,23 +1,14 @@
 import { useRef } from 'react';
 import { gsap, useGSAP, MOTION } from '../lib/motion';
 import { about, person } from '../data/content';
-import { responsive, sized, SIZES } from '../lib/img';
+import { responsive, SIZES } from '../lib/img';
 import './About.css';
 
-/** "[accent words]" → accent spans, "{img:N}" → inline photo pill, everything else → word spans. */
-function Statement({ text, images }) {
-  const tokens = text.match(/\[[^\]]+\]|\{img:\d+\}|\S+/g);
+/** "[accent words]" → accent spans, everything else → word spans. */
+function Statement({ text }) {
+  const tokens = text.match(/\[[^\]]+\]|\S+/g);
   let key = 0;
   return tokens.flatMap((tok) => {
-    const img = tok.match(/^\{img:(\d+)\}$/);
-    if (img) {
-      return [
-        <span key={key++} className="about__pill" aria-hidden="true">
-          <img src={sized(images[Number(img[1])], 480)} alt="" loading="lazy" decoding="async" />
-        </span>,
-        ' ',
-      ];
-    }
     const accent = tok.startsWith('[');
     const words = accent ? tok.slice(1, -1).split(' ') : [tok];
     return words.flatMap((w) => [
@@ -60,8 +51,7 @@ export default function About() {
           .timeline({
             scrollTrigger: { trigger: '.about__statement', start: 'top 82%', end: 'bottom 45%', scrub: 0.6 },
           })
-          .fromTo('.about__word', { opacity: 0.12 }, { opacity: 1, stagger: 0.1, ease: 'none' }, 0)
-          .fromTo('.about__pill', { width: 0 }, { width: '1.9em', stagger: 1.8, ease: 'power2.inOut', duration: 1 }, 0.4);
+          .fromTo('.about__word', { opacity: 0.12 }, { opacity: 1, stagger: 0.1, ease: 'none' }, 0);
 
         // Portrait: clip-path reveal + inner parallax
         gsap.fromTo(
@@ -108,11 +98,8 @@ export default function About() {
         About me
       </h2>
       <div className="about__intro">
-        <p className="mono about__label">
-          <span className="accent">(01)</span> About
-        </p>
         <p className="about__statement">
-          <Statement text={about.statement} images={about.inlineImages} />
+          <Statement text={about.statement} />
         </p>
       </div>
 
@@ -123,8 +110,8 @@ export default function About() {
               {...responsive(about.portrait)}
               sizes={SIZES.aboutPortrait}
               alt={about.portraitAlt}
-              width="1050"
-              height="1400"
+              width="900"
+              height="1600"
               loading="lazy"
               decoding="async"
             />

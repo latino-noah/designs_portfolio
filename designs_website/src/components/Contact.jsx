@@ -110,10 +110,6 @@ export default function Contact({ variant = 'full' }) {
       </svg>
 
       <div className="contact__inner">
-        <p className="mono contact__label">
-          <span className="accent">(05)</span> Contact — {person.available}
-        </p>
-
         <h2 id="contact-title" className="contact__title">
           <span className="contact__line contact__line--1">
             <span className="contact__line--split">Let&rsquo;s</span>

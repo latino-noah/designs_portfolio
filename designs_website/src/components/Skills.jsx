@@ -128,9 +128,6 @@ export default function Skills() {
   return (
     <section ref={root} id="skills" className="skills section" aria-labelledby="skills-title">
       <div className="skills__head">
-        <p className="mono skills__label">
-          <span className="accent">(03)</span> Skills &amp; expertise
-        </p>
         <h2 id="skills-title" className="skills__title display">
           <span className="skills__title-line">
             <span>The</span>

@@ -67,6 +67,13 @@
       480
     ]
   },
+  "me": {
+    "width": 900,
+    "height": 1600,
+    "variants": [
+      480
+    ]
+  },
   "work-1": {
     "width": 1400,
     "height": 875,

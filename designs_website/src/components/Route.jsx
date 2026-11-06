@@ -56,9 +56,6 @@ export default function Route() {
   return (
     <section ref={root} id="route" className="route section" aria-labelledby="route-title">
       <div className="route__head">
-        <p className="mono route__label">
-          <span className="accent">(04)</span> Experience &amp; background
-        </p>
         <h2 id="route-title" className="route__title display">
           <span className="route__title-line">
             <span>The route</span>

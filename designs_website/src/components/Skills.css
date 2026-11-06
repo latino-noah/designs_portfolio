@@ -10,10 +10,6 @@
   gap: 24px 48px;
   margin-bottom: clamp(56px, 8vw, 120px);
 }
-.skills__label {
-  grid-column: 1 / -1;
-  color: var(--bone-dim);
-}
 .skills__title {
   font-size: var(--fs-h2);
 }

@@ -7,12 +7,6 @@
 .about__intro {
   position: relative;
 }
-.about__label {
-  position: absolute;
-  top: 0.9em;
-  left: 0;
-  color: var(--bone-dim);
-}
 .about__statement {
   font-weight: 500;
   font-size: clamp(30px, 4.6vw, 84px);
@@ -23,21 +17,6 @@
 }
 .about__word {
   display: inline;
-}
-.about__pill {
-  display: inline-block;
-  width: 1.9em;
-  height: 0.78em;
-  border-radius: 999px;
-  overflow: hidden;
-  vertical-align: -0.04em;
-  text-indent: 0;
-}
-.about__pill img {
-  width: 1.9em;
-  max-width: none;
-  height: 100%;
-  object-fit: cover;
 }
 
 /* ---------- Portrait + interests ---------- */
@@ -204,10 +183,6 @@
 }
 
 @media (max-width: 900px) {
-  .about__label {
-    position: static;
-    margin-bottom: 24px;
-  }
   .about__statement {
     text-indent: 0;
   }

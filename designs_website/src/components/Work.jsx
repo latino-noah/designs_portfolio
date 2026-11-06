@@ -158,9 +158,6 @@ export default function Work() {
 
         <div className="work__track">
           <header className="work__intro">
-            <p className="mono work__label">
-              <span className="accent">(02)</span> Selected work
-            </p>
             <h2 id="work-title" className="work__title display">
               <span className="work__title-line">
                 <span>Selected</span>
