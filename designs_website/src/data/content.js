@@ -80,8 +80,8 @@ export const projects = [
     title: 'Hiking Recommendation',
     kind: 'Travel platform — concept',
     year: '2026',
-    image: '/images/web/work-6.webp',
-    alt: 'Travel website hero with the word TRAVEL masked behind a mountain peak',
+    image: '/images/web/site-summit.webp',
+    alt: 'Homepage hero of the Hiking Recommendation site: the word TRAVEL masked behind a snowy mountain peak',
     description:
       'A hiking-travel concept built around one idea: the mountain is the interface. Oversized type slips behind the peaks as you scroll.',
     role: 'Concept, UI design, front-end',
@@ -97,8 +97,8 @@ export const projects = [
     title: 'NTS Goons',
     kind: 'Product experience — 3D',
     year: '2025',
-    image: '/images/web/work-4.webp',
-    alt: 'Pink product page with a floating Air Jordan 1 sneaker and spheres',
+    image: '/images/web/site-nts-goons.webp',
+    alt: 'Homepage hero of NTS Goons: a red Air Jordan 1 between the giant words AIR and JORDAN',
     description:
       'A playful sneaker drop page with a floating 3D Air Jordan, physics-y spheres and a 360° viewer to inspect every stitch.',
     role: '3D modelling, UI design, development',
@@ -112,7 +112,7 @@ export const projects = [
     title: 'Urban Digital',
     kind: 'Agency website',
     year: '2025',
-    image: '/images/web/work-5.webp',
+    image: '/images/web/site-urban-digital.webp',
     alt: 'Light agency website hero with the headline WEB DESIGN, video & PHOTOGRAPHY and a photo of a camera tossed in the air',
     description:
       'A conversion-focused site for a small studio offering web design, video and photography — clear services, pricing and trust signals.',
@@ -127,7 +127,7 @@ export const projects = [
     title: 'Gianni Watson',
     kind: 'Personal portfolio — client',
     year: '2025',
-    image: '/images/web/work-2.webp',
+    image: '/images/web/site-gianni-watson.webp',
     alt: 'Minimal black portfolio with the words CREATING VISUAL PEACE',
     description:
       'A quiet, typographic portfolio for a visual creator. Black canvas, one statement, letting the work and the vlogs speak.',
@@ -142,7 +142,7 @@ export const projects = [
     title: 'Parallax Website',
     kind: 'Motion study',
     year: '2024',
-    image: '/images/web/work-3.webp',
+    image: '/images/web/site-parallax-lab.webp',
     alt: 'Black and white photo of a person filming with a camcorder on a rooftop, with the words BACKGROUND PARALLAX',
     description:
       'A series of scroll experiments — background parallax, sticky reveals and masking — that became the toolkit behind my later work.',
@@ -157,8 +157,8 @@ export const projects = [
     title: 'Old Portfolio',
     kind: 'Portfolio v1',
     year: '2024',
-    image: '/images/web/work-1.webp',
-    alt: 'Earlier portfolio with a black and white rooftop photo and the headline ARE YOU GIVING IT A 100%',
+    image: '/images/web/site-portfolio-v1.webp',
+    alt: 'Homepage hero of noahjulian.nl: the name NOAH over layered mountains and a setting sun',
     description:
       'My first portfolio. Black and white photography, big statements and the start of a long obsession with web motion.',
     role: 'Design & development',

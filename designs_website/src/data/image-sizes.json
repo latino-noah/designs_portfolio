@@ -74,6 +74,54 @@
       480
     ]
   },
+  "site-gianni-watson": {
+    "width": 1440,
+    "height": 900,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "site-nts-goons": {
+    "width": 1440,
+    "height": 900,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "site-parallax-lab": {
+    "width": 1440,
+    "height": 900,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "site-portfolio-v1": {
+    "width": 1440,
+    "height": 900,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "site-summit": {
+    "width": 1440,
+    "height": 900,
+    "variants": [
+      480,
+      960
+    ]
+  },
+  "site-urban-digital": {
+    "width": 1440,
+    "height": 900,
+    "variants": [
+      480,
+      960
+    ]
+  },
   "work-1": {
     "width": 1400,
     "height": 875,
