@@ -109,7 +109,7 @@ export const projects = [
   },
   {
     id: 'urban-digital',
-    title: 'Urban Digital',
+    title: 'VISUAL DEPT',
     kind: 'Agency website',
     year: '2025',
     image: '/images/web/site-urban-digital.webp',
