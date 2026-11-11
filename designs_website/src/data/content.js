@@ -332,5 +332,5 @@ export const hire = {
   // Access key from https://web3forms.com (free). Messages from the Hire me form are delivered to the email
   // address the key was created for. This key is meant to be public, so it's fine to commit it.
   // Leave empty to fall back to opening the visitor's email app.
-  web3formsKey: '',
+  web3formsKey: '3d2671d0-cbe9-42f1-923a-45151cc7340d',
 };
