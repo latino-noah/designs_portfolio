@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap, useGSAP, ScrollTrigger, MOTION, initLenis, scrollToTarget, prefersReducedMotion } from '../lib/motion';
 import { person, hire, projects } from '../data/content';
-import { Arrow, Magnetic, RollText } from '../components/ui';
+import { Arrow, RollText } from '../components/ui';
 import { responsive, sized, SIZES } from '../lib/img';
 import Cursor from '../components/Cursor';
 import Nav from '../components/Nav';
@@ -140,13 +140,20 @@ function Hero() {
 
         <div className="hh__body">
           <p className="hh__lead" data-intro>
-            I help brands and businesses build a stronger visual identity through thoughtful design, photography and
-            creative storytelling.
+            Websites, photos and video for brands and businesses, designed and made by one person from start to finish.
           </p>
           <p className="hh__intro" data-intro>
-            I&rsquo;m {person.firstName}, a creative from {person.city} working across design, code and camera. Tell me
-            what you have in mind and let&rsquo;s see what we can make together.
+            I&rsquo;m {person.firstName}, a creative from {person.city}. You can hire me for:
           </p>
+          <ul className="hh__services" data-intro>
+            {hire.services.map((s) => (
+              <li key={s.n}>
+                <a href={`#service-${s.n}`} onClick={(e) => go(e, `#service-${s.n}`)}>
+                  <span className="mono accent">{s.n}</span> {s.title}
+                </a>
+              </li>
+            ))}
+          </ul>
           <div className="hire-ctas" data-intro>
             <a className="pill pill--solid" href="#contact" onClick={(e) => go(e, '#contact')}>
               Let&rsquo;s work together <Arrow />
@@ -175,13 +182,14 @@ function Services() {
           </h2>
         </div>
         <p className="hire-head__text" data-fade>
-          Five disciplines, one way of working: start with the idea, then shape every detail until it feels right.
+          Five services you can book on their own or combine, for example a new website with photos and video to
+          go with it.
         </p>
       </header>
 
       <ol className="hs__list">
         {hire.services.map((s, i) => (
-          <li key={s.n} className={`svc svc--${i + 1}`}>
+          <li key={s.n} id={`service-${s.n}`} className={`svc svc--${i + 1}`}>
             <p className="svc__meta mono" data-fade>
               <span className="accent">{s.n}</span>
               <span className="svc__rule" aria-hidden="true" />
@@ -195,6 +203,13 @@ function Services() {
             <div className="svc__body" data-fade>
               <h3 className="svc__title display">{s.title}</h3>
               <p className="svc__text">{s.text}</p>
+              {s.deliverables && (
+                <ul className="svc__list" aria-label={`What you get with ${s.title}`}>
+                  {s.deliverables.map((d) => (
+                    <li key={d}>{d}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           </li>
         ))}
@@ -425,7 +440,7 @@ function HireContact() {
       <div className="hc__grid">
         <div className="hc__side">
           <p className="hc__lead" data-fade>
-            Have an idea, a business or a project that needs a creative touch? Let&rsquo;s talk.
+            Tell me what you need using the form, or email me directly. A rough idea is enough to start.
           </p>
 
           <div className="contact__mail-row" data-fade>
@@ -438,14 +453,6 @@ function HireContact() {
           </div>
 
           <div className="hc__actions" data-fade>
-            <Magnetic strength={0.3} className="contact__button-wrap">
-              <a className="contact__button hc__button" href={`mailto:${person.email}`}>
-                <span className="contact__button-fill" aria-hidden="true" />
-                <span className="contact__button-text">
-                  Get in touch <Arrow />
-                </span>
-              </a>
-            </Magnetic>
             <ul className="contact__socials hc__socials">
               {person.socials.map((s) => (
                 <li key={s.label}>

@@ -180,6 +180,28 @@
   color: var(--bone-dim);
   max-width: 44ch;
 }
+.hh__services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: -6px;
+}
+.hh__services a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 15px;
+  color: var(--bone);
+  transition: border-color 0.3s, background-color 0.3s;
+}
+.hh__services a:hover,
+.hh__services a:focus-visible {
+  border-color: var(--sun);
+  background: rgba(255, 90, 31, 0.08);
+}
 .hh .hire-ctas {
   margin-top: 8px;
 }
@@ -228,6 +250,24 @@
   color: var(--bone-dim);
   max-width: 36ch;
   transition: color 0.5s;
+}
+.svc__list {
+  display: flex;
+  flex-direction: column;
+  max-width: 36ch;
+  border-top: 1px solid var(--line);
+}
+.svc__list li {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--bone);
+}
+.svc__list li::before {
+  content: '+';
+  color: var(--sun);
+  font-family: var(--f-mono);
 }
 
 /* Subtle hover: the photo breathes, the rule extends, the copy brightens. */
@@ -469,8 +509,7 @@
   background: var(--bone);
 }
 .hc__socials {
-  flex-direction: column;
-  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 /* Form */
@@ -661,9 +700,6 @@
   .hc__side,
   .hf {
     grid-column: 1 / -1;
-  }
-  .hc__socials {
-    flex-direction: row;
   }
 }
 
