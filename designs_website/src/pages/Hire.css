@@ -603,6 +603,20 @@
   color: var(--bone-dim);
   max-width: 36ch;
 }
+.hf__note--sent {
+  color: var(--sun);
+}
+.hf__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.hf button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
 .hf__note a {
   color: var(--bone);
   text-decoration: underline;

@@ -329,4 +329,8 @@ export const hire = {
     { n: '04', title: 'Deliver', text: 'Polishing the details and delivering the final result.' },
   ],
   projectTypes: ['Web design', 'Web development', 'Photography', 'Videography', 'Video editing', 'Something else'],
+  // Access key from https://web3forms.com (free). Messages from the Hire me form are delivered to the email
+  // address the key was created for. This key is meant to be public, so it's fine to commit it.
+  // Leave empty to fall back to opening the visitor's email app.
+  web3formsKey: '',
 };

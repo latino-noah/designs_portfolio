@@ -353,21 +353,72 @@ function Process() {
 }
 
 function ContactForm() {
-  const [sent, setSent] = useState(false);
+  // idle | sending | sent | error | mailto
+  const [status, setStatus] = useState('idle');
 
-  // No backend: compose the enquiry in the visitor's own email app.
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    if (data.get('botcheck')) return; // honeypot: only bots fill this in
     const name = data.get('name').trim();
+    const email = data.get('email').trim();
+    const message = data.get('message').trim();
     const subject = `${data.get('type')} project — ${name}`;
-    const body = `${data.get('message').trim()}\n\n— ${name}\n${data.get('email').trim()}`;
-    window.location.href = `mailto:${person.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+
+    // Without a Web3Forms key, compose the enquiry in the visitor's own email app.
+    if (!hire.web3formsKey) {
+      const body = `${message}\n\n— ${name}\n${email}`;
+      window.location.href = `mailto:${person.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      setStatus('mailto');
+      return;
+    }
+
+    setStatus('sending');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: hire.web3formsKey,
+          subject,
+          from_name: name,
+          name,
+          email,
+          replyto: email,
+          project_type: data.get('type'),
+          message,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.success) throw new Error(json.message || res.statusText);
+      form.reset();
+      setStatus('sent');
+    } catch {
+      setStatus('error');
+    }
   };
+
+  const note = {
+    idle: hire.web3formsKey ? 'Goes straight to my inbox.' : 'Opens your email app with everything filled in.',
+    sending: 'Sending…',
+    sent: 'Thanks! Your message is on its way. I’ll get back to you by email.',
+    error: (
+      <>
+        Something went wrong sending your message. Please try again or{' '}
+        <a href={`mailto:${person.email}`}>email me directly</a>.
+      </>
+    ),
+    mailto: (
+      <>
+        Opening your email app. Nothing happened? <a href={`mailto:${person.email}`}>Email me directly</a>.
+      </>
+    ),
+  }[status];
 
   return (
     <form className="hf" onSubmit={submit} data-fade>
+      <input type="checkbox" name="botcheck" className="hf__hp" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div className="hf__row">
         <label className="hf__field">
           <span className="mono hf__label">01 — Name</span>
@@ -396,18 +447,11 @@ function ContactForm() {
         <textarea name="message" rows="4" required placeholder="Tell me about the project, timing and budget" data-lenis-prevent />
       </label>
       <div className="hf__foot">
-        <p className="mono hf__note" aria-live="polite">
-          {sent ? (
-            <>
-              Opening your email app. Nothing happened?{' '}
-              <a href={`mailto:${person.email}`}>Email me directly</a>.
-            </>
-          ) : (
-            'Opens your email app with everything filled in.'
-          )}
+        <p className={`mono hf__note hf__note--${status}`} aria-live="polite">
+          {note}
         </p>
-        <button type="submit" className="pill pill--solid">
-          Send message <Arrow />
+        <button type="submit" className="pill pill--solid" disabled={status === 'sending'}>
+          {status === 'sending' ? 'Sending…' : 'Send message'} <Arrow />
         </button>
       </div>
     </form>
